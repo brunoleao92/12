@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "TP1.h"
 
+/** \brief Se utiliza para ingresar al menu de la calculadora.
+ * \param Ingresa los operandos que el usuario quiera utilizar.
+ * \param el usuario ingresa la operacion que desea realizar.
+ * \return -
+ */
 
 void menu(void)
 {
@@ -49,23 +54,55 @@ void menu(void)
                     system("pause");
                 }
                 else{
-                printf("\nCalcular division %.1f+%.1f=%.1f\n", n1,n2,division(n1,n2));
+                printf("\nCalcular division %.1f/%.1f=%.1f\n", n1,n2,division(n1,n2));
                 system("pause");}
                 break;
             case 6:
                 printf("\nCalcular multiplicacion %.1f+%.1f=%.1f\n", n1,n2,multiplicacion(n1,n2));
                 system("pause");
                 break;
-            case 7:printf("\nCalcular factoreo A=%.1f=%.1f\n", n1,factorizarn1);
-                printf("\nCalcular factoreo B=%.1f=%.1f\n\n", n2,factorizarn2);
-                system("pause");
+            case 7:if(factorizarn1 == -1){
+                    printf("Error. No se puede factorizar un numero negativo.\n");
+                    }
+
+                    else{
+                        printf("Calcular factoreo A=%.1f=%.1f\n", n1,factorizarn1);
+                        }
+                    if(factorizarn2 == -1){
+                        printf("Error. No se puede factorizar un numero negativo.\n");
+                        system("pause");
+                    }
+                    else{
+                        printf("Calcular factoreo B=%.1f=%.1f\n\n", n2,factorizarn2);
+                        system("pause");}
                 break;
             case 8:printf("\nEl resultado de %.1f+%.1f es:%.1f ", n1,n2,sumar(n1,n2));
                 printf("\nEl resultado de %.1f-%.1f es:%.1f ", n1,n2,restar(n1,n2));
                 printf("\nEl resultado de %.1f*%.1f es:%.1f ", n1,n2,multiplicacion(n1,n2));
-                printf("\nEl resultado de %.1f/%.1f es:%.1f",n1,n2,division(n1,n2));
-                printf("\nEl factorial de %.1f=%.1f",n1,factorizarn1);
-                printf("\nEl factorial de %.1f=%.1f\n\n", n2,factorizarn2);
+
+                if(division(n1,n2)==0){
+                    printf("\nError.No se puede dividir por cero.\n");
+
+                }
+                else{
+                    printf("\nCalcular division %.1f/%.1f=%.1f\n", n1,n2,division(n1,n2));
+
+                }
+
+                if(factorizarn1 == -1){
+                    printf("Error. No se puede factorizar un numero negativo.\n");
+                    }
+
+                    else{
+                        printf("Calcular factoreo A=%.1f=%.1f\n", n1,factorizarn1);
+                        }
+                    if(factorizarn2 == -1){
+                        printf("Error. No se puede factorizar un numero negativo.\n");
+                        system("pause");
+                    }
+                    else{
+                        printf("Calcular factoreo B=%.1f=%.1f\n\n", n2,factorizarn2);
+                        system("pause");}
                 system("pause");
                 break;
             case 9:
@@ -134,9 +171,13 @@ float division(float n1, float n2){
  * \return El resultado de la opercion.
  */
 long factorizar(float n1){
-    if(n1<=1){
+    if(n1==1 || n1==0){
         return 1;
     }
+    else if(n1<0){
+        return -1;
+    }
+
     else {
 
         return (long)(n1*factorizar(n1-1));
